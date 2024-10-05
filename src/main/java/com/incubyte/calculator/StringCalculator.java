@@ -23,9 +23,9 @@ public class StringCalculator {
 		String[] numbers = string.split(",");
 		int sum = 0;
 		
-		/**
-		 * If given comma seperated string length is greater than 2.
-		 * */
+
+//		If given string is comma separated string length is greater than 2.
+
 		if (numbers.length > 2) return 0;
 
 		if (numbers.length == 1) {
