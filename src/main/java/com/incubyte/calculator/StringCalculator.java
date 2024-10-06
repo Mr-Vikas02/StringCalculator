@@ -25,12 +25,30 @@ public class StringCalculator {
 		scanner.close();
 	}
 
-	public int Add(String string) {
-		if (string == null || string.isEmpty())
-			return 0;
+    public int Add(String string) {
+        if (string == null || string.isEmpty()) return 0;
 
-		String[] numbers = string.split("[,\n]");
-		int sum = 0;
+        String delimiter = ",";
+
+        /**
+         * this code is used for the string which starts with '//'
+         * */
+        if (delimiter.startsWith("//")) {
+            int delimiterEnd = string.indexOf("\n");
+            if (delimiterEnd != -1) {
+                String customDelimiter = string.substring(2, delimiterEnd).trim();
+                if (customDelimiter.startsWith("[") && customDelimiter.endsWith("]")) {
+                    customDelimiter = customDelimiter.substring(1, customDelimiter.length() - 1);
+                    delimiter = "[ " + customDelimiter + " ]";
+                } else {
+                    delimiter = customDelimiter;
+                }
+                string = string.substring(delimiterEnd + 1);
+            }
+        }
+
+        String[] numbers = string.split("[,\n" + delimiter + "]");
+        int sum = 0;
 
         for (String num : numbers) {
             num = num.trim();
